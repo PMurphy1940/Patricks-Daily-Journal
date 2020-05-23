@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/journal.css" type="text/css">
+    <title>Patrick's decent into madness journal</title>
+</head>
+<body>
+    <h1><em>Daily Journal</em></h1>
+    <form action="">
+            <fieldset class="entry-point">
+                <label for="journalDate">Date of entry</label>
+                <input type="date" name="journalDate">
+            </fieldset>
+            <fieldset class="entry-point">
+                <label for="Concepts-covered">Concepts covered</label>
+                <input type="text" name="Concepts covered">
+            </fieldset>       
+            <fieldset class="entry-point">
+                <label for="Journal-Entry">Journal Entry</label>
+                <textarea id="Journal-Entry" name="Journal Entry" rows="2" cols="25">
+                </textarea>     
+            </fieldset>
+            <fieldset class="entry-point">
+                <label for="Mood-for-the-day">Mood for the day</label>
+                <select name="Mood for the day" id="Mood-for-the-day">
+                    <option value="Happy">Happy</option>
+                    <option value="Confident">Confident</option>
+                    <option value="Ok">Ok</option>
+                    <option value="Sad">Sad</option>
+                </select>
+                 
+            </fieldset>
+            <input type="submit" value="Record Journal Entry"> 
+    </form>
+    
+</body>
+</html>
