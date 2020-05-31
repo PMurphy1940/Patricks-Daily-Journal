@@ -4,27 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/journal.css" type="text/css">
+    <script src="scripts/journal.js"></script>
     <title>Patrick's decent into madness journal</title>
 </head>
 <body>
     <h1><em>Daily Journal</em></h1>
-    <form action="">
+<form action="" onsubmit="return journalEntry" method="POST">
             <fieldset class="entry-point">
                 <label for="journalDate">Date of entry</label>
-                <input type="date" name="journalDate">
+                <input type="date" name="journalDate" id="journalDate">
             </fieldset>
             <fieldset class="entry-point">
-                <label for="Concepts-covered">Concepts covered</label>
-                <input type="text" name="Concepts covered">
+                <label for="conceptsCovered">Concepts covered</label>
+                <input type="text" name="Concepts covered" id="conceptsCovered">
             </fieldset>       
             <fieldset class="entry-point">
-                <label for="Journal-Entry">Journal Entry</label>
-                <textarea id="Journal-Entry" name="Journal Entry" rows="2" cols="25">
+                <label for="journalEntry">Journal Entry</label>
+                <textarea id="journalEntry" name="Journal Entry" rows="2" cols="25">
                 </textarea>     
             </fieldset>
             <fieldset class="entry-point">
-                <label for="Mood-for-the-day">Mood for the day</label>
-                <select name="Mood for the day" id="Mood-for-the-day">
+                <label for="moodForTheDay">Mood for the day</label>
+                <select name="Mood for the day" id="moodForTheDay">
                     <option value="Happy">Happy</option>
                     <option value="Confident">Confident</option>
                     <option value="Ok">Ok</option>
@@ -32,8 +33,8 @@
                 </select>
                  
             </fieldset>
-            <input type="submit" value="Record Journal Entry"> 
-    </form>
+            <input type="submit" value="Record Journal Entry">        
+</form>
     
 </body>
 </html>
