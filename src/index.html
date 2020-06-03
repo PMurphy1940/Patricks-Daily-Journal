@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/journal.css" type="text/css">
-    <script src="scripts/journal.js"></script>
+
     <title>Patrick's decent into madness journal</title>
 </head>
+
 <body>
-    <h1><em>Daily Journal</em></h1>
-<form action="" onsubmit="return journalEntry" method="POST">
+    <main>
+        <h1><em>Daily Journal</em></h1>
+        <form action="" onsubmit="return journalEntry" method="POST">
             <fieldset class="entry-point">
                 <label for="journalDate">Date of entry</label>
                 <input type="date" name="journalDate" id="journalDate">
@@ -17,11 +20,11 @@
             <fieldset class="entry-point">
                 <label for="conceptsCovered">Concepts covered</label>
                 <input type="text" name="Concepts covered" id="conceptsCovered">
-            </fieldset>       
+            </fieldset>
             <fieldset class="entry-point">
                 <label for="journalEntry">Journal Entry</label>
                 <textarea id="journalEntry" name="Journal Entry" rows="2" cols="25">
-                </textarea>     
+                </textarea>
             </fieldset>
             <fieldset class="entry-point">
                 <label for="moodForTheDay">Mood for the day</label>
@@ -31,10 +34,15 @@
                     <option value="Ok">Ok</option>
                     <option value="Sad">Sad</option>
                 </select>
-                 
+
             </fieldset>
-            <input type="submit" value="Record Journal Entry">        
-</form>
-    
+            <input type="submit" value="Record Journal Entry">
+        </form>
+        <article class="entryLog">
+
+        </article>
+    </main>
+    <script src="scripts/journal.js"></script>
 </body>
+
 </html>
