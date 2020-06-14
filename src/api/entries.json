@@ -1,0 +1,24 @@
+{"entries": [
+    {
+        "journalDate": "05/20/2020",
+        "conceptsCovered": "Introduction to HTML",
+        "journalEntry": "We got our first taste of HTML today. Its exciting to actually see this work.",
+        "moodForTheDay": "Excited",
+        "id": 1
+    },
+    {
+        "journalDate": "05/21/2020",
+        "conceptsCovered": "Introduction to CSS",
+        "journalEntry": "We got our first taste of CSS today. I love playing around with the design elements.",
+        "moodForTheDay": "Excited",
+        "id": 2
+    },
+    {
+        "journalDate": "05/26/2020",
+        "conceptsCovered": "First group sprint",
+        "journalEntry": "Today we started our first group project. Building and styling a website. We chose The Shaggs",
+        "moodForTheDay": "Excited",
+        "id": 3
+    }
+]
+}
