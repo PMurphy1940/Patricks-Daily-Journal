@@ -3,9 +3,11 @@
 
     Arguments: entries (array of objects)
 */
+import makeJournalEntryComponent from "./entryComponent.js"
 
 const renderJournalEntries = {
-    entryMaker (entries)  {
+    entryMaker(entries)  {
+        let individualEntry = []
     for (individualEntry of entries) {
         const entryHTML = makeJournalEntryComponent.journalEntry(individualEntry)
         const journalElement = document.querySelector(".entryLog")
@@ -13,4 +15,5 @@ const renderJournalEntries = {
         }
     }
 }
-    
+
+export default renderJournalEntries;

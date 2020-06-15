@@ -4,8 +4,9 @@
 
     Arguments: journalEntry (object)
 */
+
 const makeJournalEntryComponent = {
-    journalEntry ()  {
+    journalEntry (individualEntry)  {
     return `<div class="single entry">
                 <ul>
                     <li>${individualEntry.journalDate}</li>
@@ -16,3 +17,5 @@ const makeJournalEntryComponent = {
             </div>`
     }
 }
+
+export default makeJournalEntryComponent;
