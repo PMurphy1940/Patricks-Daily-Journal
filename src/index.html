@@ -12,7 +12,7 @@
 <body>
     <main>
         <h1><em>Daily Journal</em></h1>
-        <form action="" onsubmit="return journalEntry" method="POST">
+        <form id="dataForm">
             <fieldset class="entry-point">
                 <label for="journalDate">Date of entry</label>
                 <input type="date" name="journalDate" id="journalDate">
@@ -38,6 +38,17 @@
             </fieldset>
             <input type="button" value="Record Journal Entry" id="saveButton">
         </form>
+        <fieldset>
+            <legend>Filter Journal Entries by Mood</legend>
+            <label for="happy">Happy</label>
+            <input type="radio" name="mood" value="Happy" id="happy">
+            <label for="confident">Confident</label>
+            <input type="radio" name="mood" value="Confident" id="confident">
+            <label for="ok">OK</label>
+            <input type="radio" name="mood" value="Ok" id="ok">
+            <label for="sad">Sad</label>
+            <input type="radio" name="mood" value="Sad" id="sad">
+        </fieldset>
         <article class="entryLog">
 
         </article>
