@@ -40,6 +40,8 @@
         </form>
         <fieldset>
             <legend>Filter Journal Entries by Mood</legend>
+            <label for="all">Show All</label>
+            <input type="radio" name="mood" value="All" id="all">
             <label for="happy">Happy</label>
             <input type="radio" name="mood" value="Happy" id="happy">
             <label for="confident">Confident</label>
@@ -49,9 +51,9 @@
             <label for="sad">Sad</label>
             <input type="radio" name="mood" value="Sad" id="sad">
         </fieldset>
-        <article class="entryLog">
+        <article id="entryLog">
 
-        </article>
+        </article>        
     </main>
 
     <script type="module" src="scripts/journal.js"></script>

@@ -14,6 +14,12 @@ const API = {
               },
               body: JSON.stringify(entry)
             });
+    },
+    delete (entry) {
+        return fetch(`${url}entries/${entry}`, {
+            method: 'DELETE'
+            })
+            .then(response => response.json())
     }
 }
 

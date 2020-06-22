@@ -10,7 +10,7 @@ import API from "./data.js";
 const renderJournalEntries = {
 
     entryMaker(entries)  {
-        const journalElement = document.querySelector(".entryLog")
+        const journalElement = document.querySelector("#entryLog")
         journalElement.innerHTML = ''
     for (let individualEntry of entries) {
         const entryHTML = makeJournalEntryComponent.journalEntry(individualEntry)      
@@ -37,9 +37,11 @@ const renderJournalEntries = {
             renderJournalEntries.entryMaker(toDisplay)   
             })
             // .then((renderJournalEntries.entryMaker(toDisplay)))
- 
-        
-    }
+    },
+
+    // deleteEntryOject(entryToDelete) {
+    //     API.delete(entryToDelete).then((API.getJournalEntries().then(renderJournalEntries.entryMaker)))
+    // }
     
 }
 
