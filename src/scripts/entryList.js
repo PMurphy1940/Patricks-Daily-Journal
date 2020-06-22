@@ -9,6 +9,10 @@ import API from "./data.js";
 
 const renderJournalEntries = {
 
+    makeDOM() {
+        API.getJournalEntries().then(renderJournalEntries.entryMaker)
+    },
+
     entryMaker(entries)  {
         const journalElement = document.querySelector("#entryLog")
         journalElement.innerHTML = ''
@@ -25,24 +29,24 @@ const renderJournalEntries = {
         "journalEntry": document.querySelector("#journalEntry").value,
         "moodForTheDay": document.querySelector("#moodForTheDay").value
        }
-       API.postSingleEntry(entry).then((API.getJournalEntries().then(renderJournalEntries.entryMaker)))
+       return entry
         },
 
     filterEntry(moodValue) {
        API.getJournalEntries().then(response => {
             let toDisplay = response.filter(entry => {
-                let display = (entry.moodForTheDay.includes(moodValue)) ? true:false;
-                return display  
+                return (entry.moodForTheDay.includes(moodValue)) 
             }) 
             renderJournalEntries.entryMaker(toDisplay)   
             })
-            // .then((renderJournalEntries.entryMaker(toDisplay)))
     },
-
-    // deleteEntryOject(entryToDelete) {
-    //     API.delete(entryToDelete).then((API.getJournalEntries().then(renderJournalEntries.entryMaker)))
-    // }
-    
+    clearDataField() {
+        document.querySelector("#entryId").value = ""
+            document.querySelector("#journalDate").value = ""
+            document.querySelector("#conceptsCovered").value = ""
+            document.querySelector("#journalEntry").value = ""
+            document.querySelector("#moodForTheDay").value = ""
+    }
 }
 
 export default renderJournalEntries;

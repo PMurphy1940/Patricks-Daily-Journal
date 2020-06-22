@@ -1,12 +1,30 @@
 import API from "./data.js";
 import renderJournalEntries from "./entryList.js";
 
-API.getJournalEntries().then(renderJournalEntries.entryMaker)
+renderJournalEntries.makeDOM()
 
 
 //save button listener
 document.querySelector("#saveButton").addEventListener("click", event => {
-    renderJournalEntries.makeEntryObject()
+    const objectId = document.querySelector("#entryId").value
+    if (objectId === "") {
+        let entry = renderJournalEntries.makeEntryObject();
+        API.postSingleEntry(entry)
+        .then(() => {
+            renderJournalEntries.makeDOM()
+            renderJournalEntries.clearDataField()
+        })
+        // .then((API.getJournalEntries().then(renderJournalEntries.entryMaker)))
+        // renderJournalEntries.clearDataField()
+        }
+    else {
+        API.updateEntry(objectId, renderJournalEntries.makeEntryObject())
+        .then(() => {
+            renderJournalEntries.makeDOM()
+            renderJournalEntries.clearDataField()
+            }
+            )
+        }
     }
 )
 
@@ -50,10 +68,24 @@ document.querySelector("#sad").addEventListener("click", event => {
 //Entry listener
 
 document.querySelector("#entryLog").addEventListener("click", event => {
+    //delete listener
     if (event.target.id.startsWith("delete__")) {
         const entryToDelete = event.target.id.split("__")[1]
     API.delete(entryToDelete)
-    .then((API.getJournalEntries().then((renderJournalEntries.entryMaker))))
+    .then(renderJournalEntries.makeDOM)
+            }   
+    
+
+    // edit listener
+    else if (event.target.id.startsWith("edit__")) {
+        const entryToEdit = event.target.id.split("__")[1]
+        API.getSingleEntry(entryToEdit).then((entryObj => {
+            document.querySelector("#entryId").value = entryObj.id
+            document.querySelector("#journalDate").value = entryObj.journalDate
+            document.querySelector("#conceptsCovered").value = entryObj.conceptsCovered
+            document.querySelector("#journalEntry").value = entryObj.journalEntry
+            document.querySelector("#moodForTheDay").value = entryObj.moodForTheDay
+        }))
         }
     }
 )
