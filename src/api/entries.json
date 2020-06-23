@@ -20,6 +20,13 @@
       "journalEntry": "Today we started our first group project. Building and styling a website. We chose The Shaggs",
       "moodForTheDay": "Confident",
       "id": 3
+    },
+    {
+      "journalDate": "2020-06-23",
+      "conceptsCovered": "Dynamic HTML",
+      "journalEntry": "                Refactoring",
+      "moodForTheDay": "Happy",
+      "id": 4
     }
   ]
 }

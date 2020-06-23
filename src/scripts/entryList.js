@@ -46,6 +46,40 @@ const renderJournalEntries = {
             document.querySelector("#conceptsCovered").value = ""
             document.querySelector("#journalEntry").value = ""
             document.querySelector("#moodForTheDay").value = ""
+    },
+    enableSaveButton() {
+        document.querySelector("#saveButton").addEventListener("click", event => {
+            const objectId = document.querySelector("#entryId").value
+            if (objectId === "") {
+                let entry = renderJournalEntries.makeEntryObject();
+                API.postSingleEntry(entry)
+                .then(() => {
+                    renderJournalEntries.makeDOM()
+                    renderJournalEntries.clearDataField()
+                    }
+                )
+            }
+            else {
+                API.updateEntry(objectId, renderJournalEntries.makeEntryObject())
+                .then(() => {
+                    renderJournalEntries.makeDOM()
+                    renderJournalEntries.clearDataField()
+                    }
+                    )
+                }
+            }
+        )
+    },
+    enableDiscardButton() {
+        document.querySelector("#discardButton").addEventListener("click", event => {
+            document.querySelector("#dataForm").innerHTML= ``
+           }
+        )
+    },
+    entryField() {
+        makeJournalEntryComponent.entryFieldsetBuilder();
+        renderJournalEntries.enableSaveButton();
+        renderJournalEntries.enableDiscardButton()
     }
 }
 

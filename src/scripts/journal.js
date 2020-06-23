@@ -1,32 +1,13 @@
 import API from "./data.js";
 import renderJournalEntries from "./entryList.js";
+import makeJournalEntryComponent from "./entryComponent.js";
 
 renderJournalEntries.makeDOM()
 
+document.querySelector("#createEntry").addEventListener("click", event => {
+    renderJournalEntries.entryField()
+})
 
-//save button listener
-document.querySelector("#saveButton").addEventListener("click", event => {
-    const objectId = document.querySelector("#entryId").value
-    if (objectId === "") {
-        let entry = renderJournalEntries.makeEntryObject();
-        API.postSingleEntry(entry)
-        .then(() => {
-            renderJournalEntries.makeDOM()
-            renderJournalEntries.clearDataField()
-        })
-        // .then((API.getJournalEntries().then(renderJournalEntries.entryMaker)))
-        // renderJournalEntries.clearDataField()
-        }
-    else {
-        API.updateEntry(objectId, renderJournalEntries.makeEntryObject())
-        .then(() => {
-            renderJournalEntries.makeDOM()
-            renderJournalEntries.clearDataField()
-            }
-            )
-        }
-    }
-)
 
 //display mood buttons listener
 document.querySelector("#all").addEventListener("click", event => {
@@ -78,6 +59,7 @@ document.querySelector("#entryLog").addEventListener("click", event => {
 
     // edit listener
     else if (event.target.id.startsWith("edit__")) {
+        renderJournalEntries.entryField()
         const entryToEdit = event.target.id.split("__")[1]
         API.getSingleEntry(entryToEdit).then((entryObj => {
             document.querySelector("#entryId").value = entryObj.id
