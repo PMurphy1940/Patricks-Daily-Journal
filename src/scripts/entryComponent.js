@@ -8,6 +8,10 @@ import renderJournalEntries from "./entryList.js";
 
 const makeJournalEntryComponent = {
     journalEntry (individualEntry)  {
+        // let mood = moods.find(singleMood => {
+        //     (individualEntry.moodForTheDay === singleMood.id)
+        //     return singleMood.moodName
+        // })
     return `<div class="single entry">
                 <ul>
                     <li>${individualEntry.journalDate}</li>
@@ -20,7 +24,12 @@ const makeJournalEntryComponent = {
             </div>`
     },
 
-    entryFieldsetBuilder () {
+    entryFieldsetBuilder (moods) {
+        let moodSetHTML = ``
+        for (let mood of moods) {
+            let setHTML = `<option value="${mood.id}">${mood.moodName}</option>`
+            moodSetHTML += setHTML
+        }
     const entryField = document.querySelector("#dataForm")
         entryField.innerHTML= `
         <input type="hidden" id="entryId" value=""/>
@@ -34,24 +43,34 @@ const makeJournalEntryComponent = {
             </fieldset>
             <fieldset class="entry-point">
                 <label for="journalEntry">Journal Entry</label>
-                <textarea id="journalEntry" name="Journal Entry" rows="2" cols="25">
-                </textarea>
+                <textarea id="journalEntry" name="Journal Entry" rows="4" cols="35"></textarea>
             </fieldset>
             <fieldset class="entry-point">
                 <label for="moodForTheDay">Mood for the day</label>
-                <select name="Mood for the day" id="moodForTheDay">
-                    <option value="Happy">Happy</option>
-                    <option value="Confident">Confident</option>
-                    <option value="Ok">Ok</option>
-                    <option value="Sad">Sad</option>
+                <select name="Mood for the day" id="moodForTheDay">`
+                + moodSetHTML + `
                 </select>
 
             </fieldset>
             <input type="button" value="Record Journal Entry" id="saveButton"></input>
             <input type="button" value="Discard Changes" id="discardButton"></input>`
        
+    },
+    moodFilterFieldsetBuilder (moods) {
+        const moodHeaderHTML = `<legend>Filter Journal Entries by Mood</legend>
+        <label for="all">Show All</label>
+        <input type="radio" name="mood" value="All" id="all">`
+        let buttonSetHTML = ``
+        for (let mood of moods) {
+            let buttonHTML = `<label for="${mood.moodName}">${mood.moodName}</label>
+            <input type="radio" name="mood" value="${mood.moodName}" id="${mood.moodName}">`
+            buttonSetHTML += buttonHTML
+        }
+        const moodField = document.querySelector("#sort__By__Mood")
+        moodField.innerHTML = moodHeaderHTML + buttonSetHTML
     }
 }
 
 
 export default makeJournalEntryComponent;
+

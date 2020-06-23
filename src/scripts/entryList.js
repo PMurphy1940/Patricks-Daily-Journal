@@ -8,6 +8,10 @@ import API from "./data.js";
 
 
 const renderJournalEntries = {
+    // getMoods() {
+    //     API.getMoods()
+    //     .then(() => renderJournalEntries.moodFilterField(availableMoods))
+    // },
 
     makeDOM() {
         API.getJournalEntries().then(renderJournalEntries.entryMaker)
@@ -30,6 +34,7 @@ const renderJournalEntries = {
         "moodForTheDay": document.querySelector("#moodForTheDay").value
        }
        return entry
+    
         },
 
     filterEntry(moodValue) {
@@ -41,45 +46,53 @@ const renderJournalEntries = {
             })
     },
     clearDataField() {
-        document.querySelector("#entryId").value = ""
-            document.querySelector("#journalDate").value = ""
-            document.querySelector("#conceptsCovered").value = ""
-            document.querySelector("#journalEntry").value = ""
-            document.querySelector("#moodForTheDay").value = ""
+        document.querySelector("#dataForm").innerHTML= ``
     },
     enableSaveButton() {
         document.querySelector("#saveButton").addEventListener("click", event => {
             const objectId = document.querySelector("#entryId").value
             if (objectId === "") {
                 let entry = renderJournalEntries.makeEntryObject();
+                if (entry.journalDate === "" | entry.conceptsCovered === "" | entry.journalEntry === "" | entry.moodForTheDay === "") {
+                    window.alert("All fields must be filled out")
+                }
+                else {
                 API.postSingleEntry(entry)
                 .then(() => {
                     renderJournalEntries.makeDOM()
                     renderJournalEntries.clearDataField()
                     }
-                )
+                )}
             }
             else {
-                API.updateEntry(objectId, renderJournalEntries.makeEntryObject())
+                let entry = renderJournalEntries.makeEntryObject();
+                if (entry.journalDate === "" | entry.conceptsCovered === "" | entry.journalEntry === "" | entry.moodForTheDay === "") {
+                    window.alert("All fields must be filled out")
+                }
+                else {
+                API.updateEntry(objectId, entry)
                 .then(() => {
                     renderJournalEntries.makeDOM()
                     renderJournalEntries.clearDataField()
                     }
                     )
-                }
+                }}
             }
         )
     },
     enableDiscardButton() {
         document.querySelector("#discardButton").addEventListener("click", event => {
-            document.querySelector("#dataForm").innerHTML= ``
+            renderJournalEntries.clearDataField()
            }
         )
     },
-    entryField() {
-        makeJournalEntryComponent.entryFieldsetBuilder();
+    entryField(moods) {
+        makeJournalEntryComponent.entryFieldsetBuilder(moods);
         renderJournalEntries.enableSaveButton();
         renderJournalEntries.enableDiscardButton()
+    },
+    moodFilterField(moods) {
+        makeJournalEntryComponent.moodFilterFieldsetBuilder(moods)
     }
 }
 

@@ -1,50 +1,58 @@
 import API from "./data.js";
 import renderJournalEntries from "./entryList.js";
-import makeJournalEntryComponent from "./entryComponent.js";
+let moods;
+//GET available moods//
+// renderJournalEntries.getMoods()
+// const availableMoods = API.getMoods()
+API.getMoods()
+.then(response => moods = response)
+.then(() => {renderJournalEntries.moodFilterField(moods)})
 
-renderJournalEntries.makeDOM()
+//Build initial landing page//
+renderJournalEntries.makeDOM(moods)
 
+//NEW ENTRY button listener//
 document.querySelector("#createEntry").addEventListener("click", event => {
-    renderJournalEntries.entryField()
+    renderJournalEntries.entryField(moods)
 })
 
 
-//display mood buttons listener
-document.querySelector("#all").addEventListener("click", event => {
+// //display mood buttons listener
+// document.querySelector("#all").addEventListener("click", event => {
+// //   let moodValue = event.target.value
+//     // console.log(moodvalue)
+//     // renderJournalEntries.entryMaker
+//     API.getJournalEntries().then(renderJournalEntries.entryMaker)
+//     }
+// )
+// document.querySelector("#happy").addEventListener("click", event => {
 //   let moodValue = event.target.value
-    // console.log(moodvalue)
-    // renderJournalEntries.entryMaker
-    API.getJournalEntries().then(renderJournalEntries.entryMaker)
-    }
-)
-document.querySelector("#happy").addEventListener("click", event => {
-  let moodValue = event.target.value
-    // console.log(moodvalue)
-    // renderJournalEntries.entryMaker
-    renderJournalEntries.filterEntry(moodValue)
-    }
-)
-document.querySelector("#confident").addEventListener("click", event => {
-  let moodValue = event.target.value
-    // console.log(moodvalue)
-    // renderJournalEntries.entryMaker
-    renderJournalEntries.filterEntry(moodValue)
-    }
-)
-document.querySelector("#ok").addEventListener("click", event => {
-  let moodValue = event.target.value
-    // console.log(moodvalue)
-    // renderJournalEntries.entryMaker
-    renderJournalEntries.filterEntry(moodValue)
-    }
-)
-document.querySelector("#sad").addEventListener("click", event => {
-  let moodValue = event.target.value
-    // console.log(moodvalue)
-    // renderJournalEntries.entryMaker
-    renderJournalEntries.filterEntry(moodValue)
-    }
-)
+//     // console.log(moodvalue)
+//     // renderJournalEntries.entryMaker
+//     renderJournalEntries.filterEntry(moodValue)
+//     }
+// )
+// document.querySelector("#confident").addEventListener("click", event => {
+//   let moodValue = event.target.value
+//     // console.log(moodvalue)
+//     // renderJournalEntries.entryMaker
+//     renderJournalEntries.filterEntry(moodValue)
+//     }
+// )
+// document.querySelector("#ok").addEventListener("click", event => {
+//   let moodValue = event.target.value
+//     // console.log(moodvalue)
+//     // renderJournalEntries.entryMaker
+//     renderJournalEntries.filterEntry(moodValue)
+//     }
+// )
+// document.querySelector("#sad").addEventListener("click", event => {
+//   let moodValue = event.target.value
+//     // console.log(moodvalue)
+//     // renderJournalEntries.entryMaker
+//     renderJournalEntries.filterEntry(moodValue)
+//     }
+// )
 
 //Entry listener
 
@@ -59,7 +67,7 @@ document.querySelector("#entryLog").addEventListener("click", event => {
 
     // edit listener
     else if (event.target.id.startsWith("edit__")) {
-        renderJournalEntries.entryField()
+        renderJournalEntries.entryField(moods)
         const entryToEdit = event.target.id.split("__")[1]
         API.getSingleEntry(entryToEdit).then((entryObj => {
             document.querySelector("#entryId").value = entryObj.id

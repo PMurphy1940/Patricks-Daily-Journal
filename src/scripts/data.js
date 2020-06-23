@@ -2,6 +2,7 @@
 const url = "http://localhost:3000/"
 
 const API = {
+    //*****ENTRIES*****//
     getJournalEntries () {
         return fetch(`${url}entries`)
             .then(response => response.json())
@@ -32,6 +33,11 @@ const API = {
         return fetch(`${url}entries/${entry}`, {
             method: 'DELETE'
             })
+            .then(response => response.json())
+    },
+    //*****MOODS*****//
+    getMoods () {
+        return fetch(`${url}moods`)
             .then(response => response.json())
     }
 }
