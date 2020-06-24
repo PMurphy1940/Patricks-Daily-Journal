@@ -12,15 +12,20 @@ const makeJournalEntryComponent = {
         //     (individualEntry.moodForTheDay === singleMood.id)
         //     return singleMood.moodName
         // })
-    return `<div class="single entry">
-                <ul>
-                    <li>${individualEntry.journalDate}</li>
-                    <li>${individualEntry.conceptsCovered}</li>
-                    <li>${individualEntry.journalEntry}</li>
-                    <li>${individualEntry.moodForTheDay}</li>
-                </ul>
-                <button type="button" id="edit__${individualEntry.id}">edit</button>
-                <button type="button" id="delete__${individualEntry.id}">Delete</button>   
+    return `<legend class="popCard">${individualEntry.conceptsCovered}</legend>
+            <div class="single_entry">
+                <div class="entry__Content">
+                    <div class="date__Concepts">
+                                                     
+                    <p>${individualEntry.journalDate}</p>
+                    </div>
+                    <p class="an__Entry">${individualEntry.journalEntry}</p>
+                    <p class="an__Entry__Mood">${individualEntry.moodForTheDay}</p>
+                </div>
+                <div class="entries__button__container">                
+                    <button type="button" id="edit__${individualEntry.id}">edit</button>
+                    <button type="button" id="delete__${individualEntry.id}">Delete</button>
+                </div>   
             </div>`
     },
 
@@ -57,17 +62,23 @@ const makeJournalEntryComponent = {
        
     },
     moodFilterFieldsetBuilder (moods) {
-        const moodHeaderHTML = `<legend>Filter Journal Entries by Mood</legend>
-        <label for="all">Show All</label>
-        <input type="radio" name="mood" value="All" id="all">`
+        const moodHeaderHTML = `<legend class="popMoods">Filter Journal Entries by Mood</legend>
+        <div id="filter__Container">
+            <div class="mood__Button__div">
+            <input class="md__Button" type="radio" name="mood" value="All" id="all" hidden checked>
+            <label for="all">Show All</label>
+            </div>
+        `
         let buttonSetHTML = ``
         for (let mood of moods) {
-            let buttonHTML = `<label for="${mood.moodName}">${mood.moodName}</label>
-            <input type="radio" name="mood" value="${mood.moodName}" id="${mood.moodName}">`
+            let buttonHTML = `<div class="mood__Button__div">
+            <input type="radio" name="mood" value="${mood.moodName}" id="${mood.moodName}" hidden>
+            <label class="md__Button" for="${mood.moodName}">${mood.moodName}</label>           
+            </div>`
             buttonSetHTML += buttonHTML
         }
         const moodField = document.querySelector("#sort__By__Mood")
-        moodField.innerHTML = moodHeaderHTML + buttonSetHTML
+        moodField.innerHTML = moodHeaderHTML + buttonSetHTML + `</div>`
     }
 }
 

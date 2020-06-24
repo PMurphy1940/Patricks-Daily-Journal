@@ -12,17 +12,24 @@
 <body>
     <main>
         <h1><em>Daily Journal</em></h1>
-        <button id="createEntry">New Entry</button>
-        <form id="dataForm">
-            
-        </form>
-        
-        <fieldset id="sort__By__Mood">
-            
-        </fieldset>
-        <article id="entryLog">
+        <div id="entriesContainer">
+            <div id="filters">             
+                <fieldset id="sort__By__Mood">
+                
+                </fieldset>        
+            </div>
+        </div> 
+        <div class="entries__Section">
+            <article id="entryLog">
 
-        </article>        
+            </article>
+            <div>
+                <button id="createEntry">New Entry</button>
+                <form id="dataForm">
+            
+                </form>
+            </div>
+        </div>        
     </main>
 
     <script type="module" src="scripts/journal.js"></script>
@@ -32,14 +39,3 @@
 
 
 
-<!-- <legend>Filter Journal Entries by Mood</legend>
-            <label for="all">Show All</label>
-            <input type="radio" name="mood" value="All" id="all">
-            <label for="happy">Happy</label>
-            <input type="radio" name="mood" value="Happy" id="happy">
-            <label for="confident">Confident</label>
-            <input type="radio" name="mood" value="Confident" id="confident">
-            <label for="ok">OK</label>
-            <input type="radio" name="mood" value="Ok" id="ok">
-            <label for="sad">Sad</label>
-            <input type="radio" name="mood" value="Sad" id="sad"> -->
