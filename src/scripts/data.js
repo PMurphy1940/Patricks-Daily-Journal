@@ -4,11 +4,11 @@ const url = "http://localhost:3000/"
 const API = {
     //*****ENTRIES*****//
     getJournalEntries () {
-        return fetch(`${url}entries`)
+        return fetch(`${url}entries?_expand=mood`)
             .then(response => response.json())
     },
     getSingleEntry (id) {
-        return fetch(`${url}entries/${id}`)
+        return fetch(`${url}entries/${id}?_expand=mood`)
         .then(response => response.json())
     },
     postSingleEntry (entry) {

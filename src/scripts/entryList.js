@@ -15,6 +15,7 @@ const renderJournalEntries = {
 
     makeDOM() {
         API.getJournalEntries().then(renderJournalEntries.entryMaker)
+
     },
 
     entryMaker(entries)  {
@@ -31,7 +32,7 @@ const renderJournalEntries = {
         "journalDate": document.querySelector("#journalDate").value,
         "conceptsCovered": document.querySelector("#conceptsCovered").value,
         "journalEntry": document.querySelector("#journalEntry").value,
-        "moodForTheDay": document.querySelector("#moodForTheDay").value
+        "moodId": document.querySelector("#moodForTheDay").value
        }
        return entry
     
@@ -40,7 +41,7 @@ const renderJournalEntries = {
     filterEntry(moodValue) {
        API.getJournalEntries().then(response => {
             let toDisplay = response.filter(entry => {
-                return (entry.moodForTheDay.includes(moodValue)) 
+                return (entry.mood.id == moodValue) 
             }) 
             renderJournalEntries.entryMaker(toDisplay)   
             })
@@ -53,27 +54,31 @@ const renderJournalEntries = {
             const objectId = document.querySelector("#entryId").value
             if (objectId === "") {
                 let entry = renderJournalEntries.makeEntryObject();
-                if (entry.journalDate === "" | entry.conceptsCovered === "" | entry.journalEntry === "" | entry.moodForTheDay === "") {
+                if (entry.journalDate === "" | entry.conceptsCovered === "" | entry.journalEntry === "" | entry.moodId === "") {
                     window.alert("All fields must be filled out")
                 }
                 else {
                 API.postSingleEntry(entry)
                 .then(() => {
                     renderJournalEntries.makeDOM()
+                    document.querySelector("#all").checked=true
                     renderJournalEntries.clearDataField()
+                    document.querySelector(".newButton").classList=("newButton")
                     }
                 )}
             }
             else {
                 let entry = renderJournalEntries.makeEntryObject();
-                if (entry.journalDate === "" | entry.conceptsCovered === "" | entry.journalEntry === "" | entry.moodForTheDay === "") {
+                if (entry.journalDate === "" | entry.conceptsCovered === "" | entry.journalEntry === "" | entry.moodId == "") {
                     window.alert("All fields must be filled out")
                 }
                 else {
                 API.updateEntry(objectId, entry)
                 .then(() => {
                     renderJournalEntries.makeDOM()
+                    document.querySelector("#all").checked=true
                     renderJournalEntries.clearDataField()
+                    document.querySelector(".newButton").classList=("newButton")
                     }
                     )
                 }}
@@ -83,6 +88,7 @@ const renderJournalEntries = {
     enableDiscardButton() {
         document.querySelector("#discardButton").addEventListener("click", event => {
             renderJournalEntries.clearDataField()
+            document.querySelector(".newButton").classList=("newButton")
            }
         )
     },
@@ -93,6 +99,15 @@ const renderJournalEntries = {
     },
     moodFilterField(moods) {
         makeJournalEntryComponent.moodFilterFieldsetBuilder(moods)
+        document.querySelector("#all").addEventListener("click", event => {
+                API.getJournalEntries().then(renderJournalEntries.entryMaker)
+                })
+        moods.forEach(mood => {
+            document.querySelector(`#${mood.moodName}`).addEventListener("click", event => {
+                  let moodValue = event.target.value
+                    renderJournalEntries.filterEntry(moodValue)
+                    })
+        });
     }
 }
 

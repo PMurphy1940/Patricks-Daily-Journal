@@ -4,28 +4,28 @@
       "journalDate": "2020-05-20",
       "conceptsCovered": "Introduction to HTML",
       "journalEntry": "We got our first taste of HTML today. Its exciting to actually see this work.",
-      "moodForTheDay": "1",
+      "moodId": "1",
       "id": 1
     },
     {
       "journalDate": "2020-05-21",
       "conceptsCovered": "Introduction to CSS",
       "journalEntry": "We got our first taste of CSS today. I love playing around with the design elements.",
-      "moodForTheDay": 2,
+      "moodId": "1",
       "id": 2
     },
     {
       "journalDate": "2020-05-22",
       "conceptsCovered": "First group sprint",
       "journalEntry": "Today we started our first group project. Building and styling a website. We chose The Shaggs",
-      "moodForTheDay": 2,
+      "moodId": "1",
       "id": 3
     },
     {
-      "journalDate": "2020-06-23",
+      "journalDate": "2020-06-19",
       "conceptsCovered": "JSON methods",
-      "journalEntry": "Cool stuff",
-      "moodForTheDay": "1",
+      "journalEntry": "Delete and POST and PUT",
+      "moodId": "2",
       "id": 4
     }
   ],
@@ -51,7 +51,7 @@
       "id": 4
     },
     {
-      "moodName": "Utterly Dejected",
+      "moodName": "Dejected",
       "scale": 1,
       "id": 5
     }
